@@ -1,0 +1,28 @@
+id: ui-ux-pro-max
+display_name: UI UX Pro Max
+kind: port
+port_version: 1.0.0
+created_at: 2026-08-08
+origin:
+  provider: github
+  repository: nextlevelbuilder/ui-ux-pro-max-skill
+  release: v2.14.1
+  commit: abb7f2fd5a083fa1ff55c326a963ff0d95c33f99
+  original_skill_path: .claude/skills/ui-ux-pro-max/SKILL.md
+license:
+  upstream: MIT
+  redistribution: allowed
+  modification: allowed
+targets:
+  chatgpt_web: true
+  codex: true
+compatibility:
+  shared_reasoning_core: native
+  bundled_portable_catalog: true
+  upstream_full_catalog: optional
+  repository_editing: codex_enhanced
+update_policy:
+  strategy: review_required
+  compare: release_and_commit
+  never_auto_merge_upstream: true
+status: current

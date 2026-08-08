@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "scope": "Compact portable catalog for ChatGPT Web and Codex fallback. This is not the upstream project's complete database.",
+  "profiles": [
+    {
+      "id": "saas",
+      "keywords": ["saas", "b2b", "software", "subscription", "platform", "cloud"],
+      "pattern": "Hero + value proposition + product proof + integrations + social proof + pricing/CTA",
+      "styles": ["swiss-minimal", "bento", "soft-ui"],
+      "palette": {"primary":"#2563EB","secondary":"#3B82F6","accent":"#EA580C","background":"#F8FAFC","surface":"#FFFFFF","text":"#1E293B"},
+      "typography": ["Inter", "Source Serif 4"],
+      "effects": ["subtle elevation", "150-250ms transitions", "light product motion"],
+      "avoid": ["generic purple-pink AI gradients", "feature overload above the fold", "low-contrast secondary text"]
+    },
+    {
+      "id": "ai-product",
+      "keywords": ["ai", "assistant", "copilot", "chatbot", "llm", "agent"],
+      "pattern": "Outcome-led hero + interactive demo + capability groups + trust/privacy + examples + CTA",
+      "styles": ["ai-native", "bento", "swiss-minimal"],
+      "palette": {"primary":"#6D28D9","secondary":"#7C3AED","accent":"#0891B2","background":"#FAF5FF","surface":"#FFFFFF","text":"#1E1B4B"},
+      "typography": ["Manrope", "Inter"],
+      "effects": ["streaming-state feedback", "progressive disclosure", "soft focus transitions"],
+      "avoid": ["decorative AI glow everywhere", "unexplained autonomous actions", "hidden model/system state"]
+    },
+    {
+      "id": "fintech",
+      "keywords": ["fintech", "bank", "banking", "finance", "payments", "insurance", "trading", "wallet"],
+      "pattern": "Trust-first hero + security proof + key financial actions + transparent fees + support",
+      "styles": ["trust-authority", "swiss-minimal", "data-dense"],
+      "palette": {"primary":"#0F172A","secondary":"#1E3A8A","accent":"#15803D","background":"#F8FAFC","surface":"#FFFFFF","text":"#0F172A"},
+      "typography": ["IBM Plex Sans", "IBM Plex Serif"],
+      "effects": ["restrained motion", "clear status transitions", "strong focus states"],
+      "avoid": ["speculative crypto aesthetics for traditional finance", "ambiguous money states", "color-only gain/loss indicators"]
+    },
+    {
+      "id": "healthcare",
+      "keywords": ["health", "healthcare", "medical", "clinic", "hospital", "pharmacy", "dental", "therapy", "wellness app"],
+      "pattern": "Task-first navigation + care/service clarity + trust credentials + accessible forms + support",
+      "styles": ["accessible-ethical", "swiss-minimal", "soft-ui"],
+      "palette": {"primary":"#0E7490","secondary":"#0891B2","accent":"#15803D","background":"#ECFEFF","surface":"#FFFFFF","text":"#164E63"},
+      "typography": ["Atkinson Hyperlegible", "Source Sans 3"],
+      "effects": ["calm feedback", "minimal nonessential animation", "persistent validation"],
+      "avoid": ["urgent red as decoration", "small text", "hover-only disclosure", "medical claims without context"]
+    },
+    {
+      "id": "ecommerce",
+      "keywords": ["ecommerce", "e-commerce", "shop", "store", "retail", "marketplace", "commerce"],
+      "pattern": "Merchandising hero + category discovery + product proof + trust/shipping + cart/checkout clarity",
+      "styles": ["editorial", "bento", "swiss-minimal"],
+      "palette": {"primary":"#047857","secondary":"#10B981","accent":"#C2410C","background":"#ECFDF5","surface":"#FFFFFF","text":"#064E3B"},
+      "typography": ["DM Sans", "Lora"],
+      "effects": ["image zoom", "clear variant transitions", "sticky purchase actions"],
+      "avoid": ["surprise costs", "fake scarcity", "layout shift from product imagery", "tiny tap targets"]
+    },
+    {
+      "id": "luxury",
+      "keywords": ["luxury", "premium", "jewelry", "fashion", "high-end", "boutique"],
+      "pattern": "Editorial hero + craftsmanship/story + curated collection + restrained proof + concierge CTA",
+      "styles": ["editorial", "exaggerated-minimal", "dark-premium"],
+      "palette": {"primary":"#1C1917","secondary":"#44403C","accent":"#A16207","background":"#FAFAF9","surface":"#FFFFFF","text":"#0C0A09"},
+      "typography": ["Cormorant Garamond", "Montserrat"],
+      "effects": ["slow image reveals", "refined hover states", "generous whitespace"],
+      "avoid": ["busy gradients", "cheap badge styling", "too many simultaneous CTAs"]
+    },
+    {
+      "id": "dashboard",
+      "keywords": ["dashboard", "analytics", "admin", "operations", "monitoring", "metrics", "bi"],
+      "pattern": "Summary KPIs + prioritized exceptions + trends + filters + drill-down + details-on-demand",
+      "styles": ["data-dense", "swiss-minimal", "bento"],
+      "palette": {"primary":"#1E40AF","secondary":"#3B82F6","accent":"#B45309","background":"#F8FAFC","surface":"#FFFFFF","text":"#1E293B"},
+      "typography": ["Inter", "IBM Plex Mono"],
+      "effects": ["fast state feedback", "skeletons only where useful", "sticky filters"],
+      "avoid": ["chart junk", "equal visual weight for every metric", "color-only status", "unbounded card grids"]
+    },
+    {
+      "id": "developer-tool",
+      "keywords": ["developer", "devtool", "ide", "api", "sdk", "documentation", "code", "terminal"],
+      "pattern": "Problem/solution hero + code/demo + quick start + feature proof + docs/integrations + CTA",
+      "styles": ["developer-dark", "swiss-minimal", "bento"],
+      "palette": {"primary":"#18181B","secondary":"#27272A","accent":"#2563EB","background":"#09090B","surface":"#18181B","text":"#F4F4F5"},
+      "typography": ["Inter", "JetBrains Mono"],
+      "effects": ["copy feedback", "syntax-aware transitions", "minimal terminal motion"],
+      "avoid": ["fake terminal text that blocks reading", "low contrast code", "unnecessary neon"]
+    },
+    {
+      "id": "education",
+      "keywords": ["education", "learning", "course", "school", "student", "training", "academy"],
+      "pattern": "Goal/outcome + learning path + sample lesson + progress/social proof + enrollment CTA",
+      "styles": ["accessible-ethical", "soft-ui", "bento"],
+      "palette": {"primary":"#4F46E5","secondary":"#6366F1","accent":"#C2410C","background":"#EEF2FF","surface":"#FFFFFF","text":"#1E1B4B"},
+      "typography": ["Nunito Sans", "Source Serif 4"],
+      "effects": ["progress feedback", "celebratory motion sparingly", "clear active states"],
+      "avoid": ["gamification that obscures learning", "tiny labels", "color-only mastery states"]
+    },
+    {
+      "id": "beauty-spa",
+      "keywords": ["beauty", "spa", "salon", "skincare", "wellness", "massage"],
+      "pattern": "Emotional hero + services + credibility/results + testimonials + booking + contact",
+      "styles": ["soft-ui", "organic", "editorial"],
+      "palette": {"primary":"#BE185D","secondary":"#DB2777","accent":"#7E22CE","background":"#FDF2F8","surface":"#FFFFFF","text":"#831843"},
+      "typography": ["Cormorant Garamond", "Montserrat"],
+      "effects": ["soft shadows", "gentle reveals", "calm hover states"],
+      "avoid": ["harsh neon", "aggressive motion", "overly clinical layout"]
+    },
+    {
+      "id": "restaurant",
+      "keywords": ["restaurant", "food", "cafe", "bakery", "dining", "menu"],
+      "pattern": "Food-led hero + menu highlights + location/hours + reviews + reservation/order CTA",
+      "styles": ["editorial", "organic", "exaggerated-minimal"],
+      "palette": {"primary":"#B91C1C","secondary":"#DC2626","accent":"#A16207","background":"#FEF2F2","surface":"#FFFFFF","text":"#450A0A"},
+      "typography": ["Fraunces", "DM Sans"],
+      "effects": ["image-led transitions", "sticky reservation CTA", "subtle section reveals"],
+      "avoid": ["PDF-only menus", "autoplay audio", "hard-to-find hours/location"]
+    },
+    {
+      "id": "travel-hospitality",
+      "keywords": ["travel", "tourism", "hotel", "resort", "booking", "hospitality", "vacation"],
+      "pattern": "Destination hero + availability/search + experiences + rooms/options + reviews + booking CTA",
+      "styles": ["editorial", "hero-centric", "organic"],
+      "palette": {"primary":"#0369A1","secondary":"#0EA5E9","accent":"#C2410C","background":"#F0F9FF","surface":"#FFFFFF","text":"#0C4A6E"},
+      "typography": ["Manrope", "Lora"],
+      "effects": ["cinematic imagery", "map/list synchronization", "calm booking feedback"],
+      "avoid": ["hidden taxes/fees", "unclear dates", "overanimated galleries"]
+    },
+    {
+      "id": "real-estate",
+      "keywords": ["real estate", "property", "realtor", "housing", "apartment", "homes"],
+      "pattern": "Search-first hero + featured inventory + neighborhood proof + agent/trust + inquiry CTA",
+      "styles": ["trust-authority", "editorial", "swiss-minimal"],
+      "palette": {"primary":"#0F766E","secondary":"#14B8A6","accent":"#0369A1","background":"#F0FDFA","surface":"#FFFFFF","text":"#134E4A"},
+      "typography": ["Inter", "Merriweather"],
+      "effects": ["map/list sync", "image galleries", "clear saved-state feedback"],
+      "avoid": ["poor image aspect ratios", "hidden filters", "unlabeled map markers"]
+    },
+    {
+      "id": "portfolio",
+      "keywords": ["portfolio", "designer", "artist", "photographer", "creative", "personal site"],
+      "pattern": "Identity hero + selected work + case-study depth + about/process + contact",
+      "styles": ["exaggerated-minimal", "editorial", "brutalist"],
+      "palette": {"primary":"#18181B","secondary":"#3F3F46","accent":"#2563EB","background":"#FAFAFA","surface":"#FFFFFF","text":"#09090B"},
+      "typography": ["Space Grotesk", "Source Serif 4"],
+      "effects": ["project-led motion", "cursor effects only when useful", "smooth case-study transitions"],
+      "avoid": ["navigation experiments that hide work", "motion that blocks scanning", "unreadable display type"]
+    },
+    {
+      "id": "gaming",
+      "keywords": ["game", "gaming", "esports", "streaming", "entertainment"],
+      "pattern": "High-impact hero + gameplay/media + features/modes + community proof + platform CTA",
+      "styles": ["dark-premium", "cyberpunk", "dimensional"],
+      "palette": {"primary":"#6D28D9","secondary":"#7C3AED","accent":"#E11D48","background":"#0F0F23","surface":"#1E1C35","text":"#E2E8F0"},
+      "typography": ["Space Grotesk", "Inter"],
+      "effects": ["responsive motion", "media-rich reveals", "strong hover/focus feedback"],
+      "avoid": ["constant particle effects", "low contrast neon text", "motion without reduced-motion fallback"]
+    },
+    {
+      "id": "government",
+      "keywords": ["government", "public service", "civic", "municipal", "agency"],
+      "pattern": "Task/service finder + alerts + common services + eligibility/help + contact",
+      "styles": ["accessible-ethical", "trust-authority", "swiss-minimal"],
+      "palette": {"primary":"#0F172A","secondary":"#334155","accent":"#0369A1","background":"#F8FAFC","surface":"#FFFFFF","text":"#020617"},
+      "typography": ["Public Sans", "Source Serif 4"],
+      "effects": ["minimal motion", "clear state changes", "persistent focus visibility"],
+      "avoid": ["decorative complexity", "jargon-heavy navigation", "low-contrast banners"]
+    },
+    {
+      "id": "productivity",
+      "keywords": ["productivity", "task", "todo", "project management", "collaboration", "workflow"],
+      "pattern": "Immediate workspace value + primary task flow + collaboration proof + templates/integrations + CTA",
+      "styles": ["swiss-minimal", "bento", "soft-ui"],
+      "palette": {"primary":"#0F766E","secondary":"#14B8A6","accent":"#C2410C","background":"#F0FDFA","surface":"#FFFFFF","text":"#134E4A"},
+      "typography": ["Inter", "IBM Plex Sans"],
+      "effects": ["optimistic feedback with rollback", "command palette transitions", "inline editing"],
+      "avoid": ["modal-heavy workflows", "hidden bulk actions", "excessive dashboard chrome"]
+    },
+    {
+      "id": "social",
+      "keywords": ["social", "community", "creator", "feed", "network", "dating"],
+      "pattern": "Identity/value + content preview + participation loop + trust/safety + onboarding CTA",
+      "styles": ["bento", "vibrant-block", "soft-ui"],
+      "palette": {"primary":"#BE123C","secondary":"#E11D48","accent":"#2563EB","background":"#FFF1F2","surface":"#FFFFFF","text":"#881337"},
+      "typography": ["DM Sans", "Inter"],
+      "effects": ["immediate reaction feedback", "content skeletons", "stable feed scroll"],
+      "avoid": ["dark patterns for engagement", "ambiguous privacy controls", "unbounded motion in feeds"]
+    },
+    {
+      "id": "sustainability",
+      "keywords": ["sustainable", "sustainability", "climate", "green", "eco", "environment"],
+      "pattern": "Mission + measurable impact + product/service proof + methodology + action CTA",
+      "styles": ["organic", "nature-distilled", "swiss-minimal"],
+      "palette": {"primary":"#166534","secondary":"#15803D","accent":"#0E7490","background":"#F0FDF4","surface":"#FFFFFF","text":"#14532D"},
+      "typography": ["Manrope", "Merriweather"],
+      "effects": ["natural motion", "data-backed impact visuals", "subtle depth"],
+      "avoid": ["greenwashing visuals without evidence", "excessive earthy monotony", "low-contrast green-on-green"]
+    },
+    {
+      "id": "iot",
+      "keywords": ["iot", "smart home", "sensor", "fleet", "device", "monitoring"],
+      "pattern": "System status + exceptions + devices/groups + trends + automation + settings",
+      "styles": ["data-dense", "developer-dark", "bento"],
+      "palette": {"primary":"#1E293B","secondary":"#334155","accent":"#16A34A","background":"#0F172A","surface":"#1B2336","text":"#F8FAFC"},
+      "typography": ["Inter", "IBM Plex Mono"],
+      "effects": ["live-state transitions", "connection feedback", "bounded real-time animation"],
+      "avoid": ["status represented by color alone", "stale data without timestamp", "silent command failures"]
+    }
+  ],
+  "styles": {
+    "swiss-minimal": {"name":"Minimalism / Swiss","keywords":["minimal","clean","enterprise","structured"],"rules":["strong grid","clear typographic hierarchy","few decorative elements","high information clarity"]},
+    "bento": {"name":"Bento Grid","keywords":["bento","cards","feature grid","modular"],"rules":["vary card emphasis intentionally","keep reading order logical","avoid equal-weight card soup","collapse to single-column priority on narrow screens"]},
+    "soft-ui": {"name":"Soft UI Evolution","keywords":["soft","calm","friendly","wellness"],"rules":["subtle shadows only","maintain visible boundaries","do not sacrifice contrast for softness","keep controls obviously interactive"]},
+    "ai-native": {"name":"AI-Native UI","keywords":["ai","assistant","copilot","agent"],"rules":["show system state","make generated vs user content clear","support revision and undo","explain autonomous actions"]},
+    "trust-authority": {"name":"Trust & Authority","keywords":["trust","enterprise","finance","legal","government"],"rules":["surface credentials and policy links","use restrained visual language","state irreversible actions clearly","prefer explicit labels over icon-only controls"]},
+    "data-dense": {"name":"Data-Dense Dashboard","keywords":["dashboard","analytics","dense","monitoring"],"rules":["progressive disclosure","consistent number formatting","sortable/filterable tables","reserve color for meaning"]},
+    "accessible-ethical": {"name":"Accessible & Ethical","keywords":["accessible","public","health","education"],"rules":["WCAG-oriented contrast","keyboard complete","plain language","avoid coercive patterns"]},
+    "editorial": {"name":"Editorial Grid","keywords":["editorial","magazine","luxury","story"],"rules":["strong image hierarchy","controlled line length","semantic headings","mobile crop strategy"]},
+    "exaggerated-minimal": {"name":"Exaggerated Minimalism","keywords":["portfolio","fashion","architecture","premium"],"rules":["oversized type with readable fallback","few focal elements","intentional whitespace","avoid hiding navigation"]},
+    "dark-premium": {"name":"Dark Premium","keywords":["dark","premium","gaming","developer"],"rules":["avoid pure black everywhere","test muted text contrast","use elevation via luminance","provide light-mode only if context needs it"]},
+    "developer-dark": {"name":"Developer Dark","keywords":["developer","terminal","code","ide"],"rules":["legible code contrast","monospace only for code/data","copy buttons with feedback","visible keyboard focus"]},
+    "organic": {"name":"Organic / Biophilic","keywords":["organic","nature","wellness","eco"],"rules":["natural shapes sparingly","muted surface palette","do not reduce readability","pair organic imagery with structured content"]},
+    "nature-distilled": {"name":"Nature Distilled","keywords":["nature","sustainable","calm"],"rules":["natural palette with measurable contrast","large calm surfaces","limited accent use","avoid decorative greenwashing"]},
+    "hero-centric": {"name":"Hero-Centric","keywords":["hero","landing","campaign","brand"],"rules":["one primary promise","one primary CTA","supporting proof above/near fold","fast media loading"]},
+    "brutalist": {"name":"Brutalist / Raw","keywords":["brutalist","raw","experimental","art"],"rules":["use contrast intentionally","keep core navigation conventional","do not confuse raw style with inaccessible markup","test touch targets"]},
+    "cyberpunk": {"name":"Cyberpunk","keywords":["cyberpunk","gaming","sci-fi","neon"],"rules":["neon as accent not body text","control glow","offer reduced motion","preserve content hierarchy"]},
+    "dimensional": {"name":"Dimensional Layering","keywords":["3d","layered","immersive"],"rules":["depth must communicate hierarchy","avoid overlapping interactive targets","keep transforms GPU-friendly","provide static fallback"]},
+    "vibrant-block": {"name":"Vibrant Block-Based","keywords":["vibrant","youth","creator","playful"],"rules":["large color fields","consistent corner/spacing system","contrast-check every block","use animation for feedback not decoration"]}
+  },
+  "stacks": {
+    "html-tailwind": ["Use semantic HTML before utility classes", "Keep responsive classes mobile-first", "Use CSS variables or Tailwind theme tokens for the design system", "Avoid arbitrary values when a shared token exists"],
+    "react": ["Keep visual state close to components but avoid duplicate sources of truth", "Memoize only after measuring", "Use semantic components and accessible primitives", "Stabilize list keys and loading states"],
+    "nextjs": ["Prefer Server Components for static/content UI", "Use Client Components only for interaction", "Use next/image with explicit sizing", "Design loading/error/empty states for route boundaries"],
+    "vue": ["Use semantic templates and scoped component responsibilities", "Prefer computed state over duplicated derived state", "Keep transition motion reduced-motion aware", "Expose reusable design tokens"],
+    "nuxtjs": ["Use server rendering for content-heavy surfaces", "Use Nuxt image utilities when available", "Keep layouts and route transitions consistent", "Treat hydration boundaries as UX states"],
+    "nuxt-ui": ["Map design tokens to Nuxt UI theme variables", "Use library primitives before bespoke controls", "Preserve focus and keyboard behavior", "Override visually without breaking semantics"],
+    "svelte": ["Keep reactive state minimal", "Use transitions only where they communicate state", "Respect reduced motion", "Use semantic elements and progressive enhancement"],
+    "astro": ["Prefer static islands for content pages", "Hydrate only interactive components", "Optimize media aggressively", "Use View Transitions only with accessible fallback"],
+    "angular": ["Use standalone components and clear input/output contracts", "Prefer CDK/Material accessible primitives when suitable", "Use trackBy/modern control flow for large lists", "Centralize design tokens"],
+    "laravel": ["Keep Blade/Livewire interactions progressively enhanced", "Use server validation plus inline client feedback", "Centralize tokens in CSS/Tailwind config", "Avoid full-page reloads for high-frequency UI actions when Livewire/Alpine is present"],
+    "swiftui": ["Use Dynamic Type", "Use semantic system colors where possible", "Respect safe areas intentionally", "Keep tap targets at least 44pt and support VoiceOver labels"],
+    "react-native": ["Use accessibilityLabel/accessibilityRole", "Handle safe areas", "Keep press targets at least 44x44", "Avoid JS-thread-heavy animation for continuous motion"],
+    "flutter": ["Use ThemeData/ColorScheme tokens", "Support text scaling", "Use Semantics for custom controls", "Respect SafeArea and platform conventions"],
+    "jetpack-compose": ["Use Material semantics and contentDescription", "Use dynamic type/sp accessibility", "Keep state hoisted appropriately", "Respect system insets and minimum touch targets"],
+    "shadcn": ["Treat shadcn components as owned source, not immutable library UI", "Keep Radix semantics intact", "Map CSS variables to design tokens", "Do not remove focus rings without an equivalent"],
+    "threejs": ["Provide non-WebGL fallback for essential content", "Cap device pixel ratio when performance matters", "Pause rendering when offscreen", "Keep 3D interaction keyboard/touch alternatives where the task is essential"],
+    "javafx": ["Use CSS stylesheets and shared tokens", "Keep controls keyboard navigable", "Avoid blocking the UI thread", "Test high-DPI scaling"],
+    "wpf": ["Use ResourceDictionary design tokens", "Support keyboard access and automation peers", "Avoid excessive visual-tree depth", "Respect Windows scaling"],
+    "winui": ["Prefer WinUI/Fluent primitives", "Use theme resources", "Support keyboard/gamepad focus where relevant", "Respect text scaling and high contrast"],
+    "avalonia": ["Use theme resources and styles", "Preserve focus visuals", "Test cross-platform font/layout differences", "Use virtualization for large data collections"],
+    "uno": ["Use platform-aware resources while keeping shared tokens", "Respect safe areas and scaling", "Preserve automation/accessibility properties", "Test navigation semantics per target"],
+    "uwp": ["Use Fluent resource tokens", "Support keyboard and high contrast", "Respect effective pixel scaling", "Keep navigation predictable"]
+  }
+}

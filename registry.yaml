@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "registry_name": "portable-agent-skills",
+  "maintainer": "seokbeomkong",
+  "repository": {
+    "owner": "seokbeomkong",
+    "name": "portable-agent-skills",
+    "default_branch": "main",
+    "description": "A transparent registry of portable Agent Skills used with ChatGPT Web and Codex."
+  },
+  "skills": [
+    {
+      "id": "ui-ux-pro-max",
+      "display_name": "UI UX Pro Max",
+      "kind": "port",
+      "summary": "Portable UI/UX design intelligence for design systems, interface implementation, accessibility review, responsive layout, typography, color, motion, and data visualization.",
+      "path": "skills/ui-ux-pro-max",
+      "artifact": "dist/ui-ux-pro-max/skill.zip",
+      "port_version": "1.0.0",
+      "status": "current",
+      "last_verified": "2026-08-08",
+      "targets": {
+        "chatgpt_web": {
+          "supported": true,
+          "level": "native",
+          "notes": "Uses bundled references and a portable reasoning catalog without requiring repository or terminal access."
+        },
+        "codex": {
+          "supported": true,
+          "level": "enhanced",
+          "notes": "Adds repository inspection, framework detection, deterministic query execution, code modification, and project validation."
+        }
+      },
+      "origin": {
+        "provider": "github",
+        "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
+        "ref": "main",
+        "release": "v2.14.1",
+        "integrated_commit": "abb7f2fd5a083fa1ff55c326a963ff0d95c33f99",
+        "original_skill_path": ".claude/skills/ui-ux-pro-max/SKILL.md"
+      },
+      "license": {
+        "spdx": "MIT",
+        "redistribution": true,
+        "modification": true,
+        "notice": "skills/ui-ux-pro-max/THIRD_PARTY_NOTICES.md"
+      },
+      "validation": {
+        "command": "python skills/ui-ux-pro-max/scripts/check_port.py",
+        "package_limit_mb": 25
+      },
+      "update_policy": {
+        "strategy": "review_required",
+        "watch_release": true,
+        "watch_commit": true,
+        "automatic_issue": true,
+        "automatic_merge": false
+      }
+    }
+  ]
+}

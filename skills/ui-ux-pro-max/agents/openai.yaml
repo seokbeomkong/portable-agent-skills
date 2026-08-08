@@ -1,3 +1,4 @@
 interface:
   display_name: "UI UX Pro Max"
-  short_description: "Portable UI/UX design intelligence for ChatGPT and Codex"
+  short_description: "전체 UI/UX 데이터베이스 기반 설계·구현·검토"
+  default_prompt: "$ui-ux-pro-max를 사용해 전체 번들 데이터베이스에서 먼저 디자인 시스템을 조회하고, 접근성·반응형·상태·스택 규칙을 적용해 설계하거나 구현해줘. 카탈로그가 매치되지 않으면 일반 fallback임을 명시해줘."

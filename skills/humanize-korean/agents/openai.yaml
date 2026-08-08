@@ -1,6 +1,6 @@
 interface:
   display_name: "Humanize Korean"
-  short_description: "Fast summaries; Heavy work, applications, PPTs, and reports."
-  default_prompt: "한국어 원문의 사실과 수치를 보존하면서 자연스럽게 윤문해줘. 요약·기사형 참고 콘텐츠는 Fast, 업무·자기소개서·PPT·보고서 등 최종 산출물은 Heavy로 처리해줘."
+  short_description: "한국어 의미를 보존하며 AI식 문체를 자연스럽게 윤문"
+  default_prompt: "$humanize-korean을 사용해 원문의 사실·수치·역할·인용·구조를 보존하면서 자연스럽게 윤문해줘. 결과물 용도와 위험도에 따라 light, standard, heavy 경로를 선택하고 가능한 검증 게이트를 실행해줘."
 policy:
   allow_implicit_invocation: true

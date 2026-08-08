@@ -154,6 +154,12 @@ def validate_registry(root: Path, registry: dict[str, Any]) -> list[str]:
         except RegistryError as exc:
             errors.append(str(exc))
             continue
+        expected_rel = PurePosixPath("skills", skill_id)
+        if source_rel != expected_rel:
+            errors.append(
+                f"{skill_id}.path must equal {expected_rel.as_posix()} to prevent overlapping Skill roots"
+            )
+            continue
         skill_dir = root.joinpath(*source_rel.parts)
         if not skill_dir.is_dir():
             errors.append(f"{skill_id}: missing Skill directory {source_rel.as_posix()}")

@@ -10,8 +10,8 @@ This repository is not a claim of original authorship over ported Skills. Every 
 | Skill | Kind | Upstream | ChatGPT Web | Codex | Port version | Integrated upstream | Status |
 |---|---|---|---|---|---:|---|---|
 | [Caveman](skills/caveman) | `port` | [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) | ✅ Native | ✅ Native | `1.0.0` | `14d4f2e` | 🟢 Current |
-| [Humanize Korean](skills/humanize-korean) | `extended` | [epoko77-ai/im-not-ai](https://github.com/epoko77-ai/im-not-ai) | ✅ Native | ✅ Enhanced | `2.0.0` | `v2.3.0` | 🟢 Current |
-| [UI UX Pro Max](skills/ui-ux-pro-max) | `port` | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | ✅ Native | ✅ Enhanced | `1.0.0` | `v2.14.1` | 🟢 Current |
+| [Humanize Korean](skills/humanize-korean) | `extended` | [epoko77-ai/im-not-ai](https://github.com/epoko77-ai/im-not-ai) | ✅ Native | ✅ Enhanced | `3.0.0` | `v2.3.0` | 🟢 Current |
+| [UI UX Pro Max](skills/ui-ux-pro-max) | `port` | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | ✅ Native | ✅ Enhanced | `2.0.0` | `v2.14.1` | 🟢 Current |
 <!-- REGISTRY:END -->
 
 ## Why this registry exists
@@ -34,7 +34,7 @@ tracked upstream maintenance
 
 ## Install a Skill
 
-Each release contains an individual ZIP for every redistributable Skill. A Skill archive contains exactly one top-level Skill directory.
+Each release contains an individual ZIP for every redistributable Skill plus `portable-agent-skills.plugin.zip`, a Codex plugin containing every redistributable registry entry. A Skill archive contains exactly one top-level Skill directory.
 
 ### ChatGPT Web
 
@@ -47,7 +47,9 @@ See [ChatGPT installation](docs/installation-chatgpt.md).
 
 ### Codex
 
-Use the same Agent Skills package. Install it through the Skill installer or Skills UI exposed by your Codex surface. When a Codex session supports the built-in installer, point it at the Skill directory URL in this repository.
+For one Skill, use the Skill installer or Skills UI exposed by your Codex surface and point it at that Skill directory. To install the maintained bundle, use `portable-agent-skills.plugin.zip` or the repository root, which contains `.codex-plugin/plugin.json` and discovers `./skills/`.
+
+The plugin manifest points at the registry's shared `skills/` directory, and `scripts/package_plugin.py` reads `registry.yaml`. Therefore a newly registered redistributable Skill is included in the next plugin build and release automatically; the plugin manifest does not need a hand-written entry per Skill.
 
 See [Codex installation](docs/installation-codex.md).
 
@@ -59,6 +61,7 @@ python scripts/validate_registry.py
 python scripts/generate_catalog.py --check
 python scripts/run_skill_checks.py
 python scripts/package_skills.py --check
+python scripts/package_plugin.py --check
 ```
 
 `run_skill_checks.py` discovers every Skill validation command from `registry.yaml`; adding a new Skill does not require adding another hard-coded command here or in CI.

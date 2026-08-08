@@ -1,7 +1,7 @@
 id: ui-ux-pro-max
 display_name: UI UX Pro Max
 kind: port
-port_version: 1.0.0
+port_version: 2.0.0
 created_at: 2026-08-08
 origin:
   provider: github
@@ -19,7 +19,8 @@ targets:
 compatibility:
   shared_reasoning_core: native
   bundled_portable_catalog: true
-  upstream_full_catalog: optional
+  upstream_full_catalog: bundled
+  canonical_bm25_engine: native
   repository_editing: codex_enhanced
 update_policy:
   strategy: review_required

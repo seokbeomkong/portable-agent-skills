@@ -1,48 +1,63 @@
 #!/usr/bin/env python3
-"""Local sanity checks for the portable UI/UX Pro Max Skill."""
+"""Validate the full OpenAI port and run representative engine checks."""
 
 from __future__ import annotations
 
 import json
+from pathlib import Path
 import subprocess
 import sys
 import tempfile
-from pathlib import Path
+
 
 ROOT = Path(__file__).resolve().parent.parent
-QUERY = ROOT / "scripts" / "uiux_query.py"
-CATALOG = ROOT / "references" / "portable-catalog.json"
+SCRIPTS = ROOT / "scripts"
+DATA = ROOT / "data"
 
 
-def run(*args: str) -> str:
-    proc = subprocess.run([sys.executable, str(QUERY), *args], check=True, text=True, capture_output=True)
-    return proc.stdout
+def run(*args: str) -> dict:
+    result = subprocess.run(
+        [sys.executable, str(SCRIPTS / "search.py"), *args, "--json"],
+        check=True,
+        text=True,
+        capture_output=True,
+        encoding="utf-8",
+        errors="strict",
+    )
+    return json.loads(result.stdout)
 
 
 def main() -> int:
-    data = json.loads(CATALOG.read_text(encoding="utf-8"))
-    assert len(data["profiles"]) >= 15
-    assert len(data["styles"]) >= 12
-    assert len(data["stacks"]) >= 20
+    required = [
+        "SKILL.md", "agents/openai.yaml", "LICENSE", "THIRD_PARTY_NOTICES.md",
+        "CHANGELOG.md", "skill.meta.yaml", "scripts/core.py",
+        "scripts/design_system.py", "scripts/search.py", "scripts/validate_data.py",
+    ]
+    missing = [path for path in required if not (ROOT / path).is_file()]
+    if missing:
+        raise SystemExit("missing required files: " + ", ".join(missing))
+    if len(list((DATA / "stacks").glob("*.csv"))) != 22:
+        raise SystemExit("expected all 22 upstream stack catalogs")
+    if sum(path.stat().st_size for path in DATA.rglob("*.csv")) <= 1_000_000:
+        raise SystemExit("full upstream catalog is not bundled")
 
-    out = run("beauty spa wellness", "--design-system", "-p", "Serenity Spa", "--json")
-    ds = json.loads(out)
-    assert ds["profile"] == "beauty-spa"
-    assert ds["palette"]["primary"].startswith("#")
-
-    out = run("analytics dashboard", "--domain", "product", "--json")
-    rows = json.loads(out)
-    assert rows and rows[0]["id"] == "dashboard"
-
-    out = run("--stack", "nextjs", "--json")
-    stack = json.loads(out)
-    assert stack["stack"] == "nextjs" and stack["guidelines"]
+    korean = run("사스 대시보드", "--domain", "product")
+    assert korean["count"] > 0
+    no_match = run("zzqqxx invented gibberish", "--domain", "ux")
+    assert no_match["count"] == 0 and "suggestions" in no_match
+    stack = run("performance", "--stack", "nextjs")
+    assert stack["stack"] == "nextjs" and stack["count"] > 0
 
     with tempfile.TemporaryDirectory() as td:
-        run("saas analytics", "--design-system", "-p", "Test App", "--persist", "--output-dir", td)
-        assert (Path(td) / "design-system" / "test-app" / "MASTER.md").exists()
+        payload = run(
+            "saas analytics", "--design-system", "-p", "Test App", "--persist",
+            "--output-dir", td,
+        )
+        master = Path(payload["persistence"]["master_file"])
+        assert master.is_file() and master.is_relative_to(Path(td))
 
-    print("portable skill checks: PASS")
+    subprocess.run([sys.executable, str(SCRIPTS / "validate_data.py")], check=True)
+    print("ui-ux-pro-max full port: PASS")
     return 0
 
 

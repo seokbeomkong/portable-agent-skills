@@ -16,12 +16,12 @@
       "summary": "Portable UI/UX design intelligence for design systems, interface implementation, accessibility review, responsive layout, typography, color, motion, and data visualization.",
       "path": "skills/ui-ux-pro-max",
       "artifact": "dist/ui-ux-pro-max/skill.zip",
-      "port_version": "1.0.0",
+      "port_version": "2.0.0",
       "status": "current",
       "last_verified": "2026-08-08",
       "targets": {
-        "chatgpt_web": {"supported": true, "level": "native", "notes": "Uses bundled references and a portable reasoning catalog without requiring repository or terminal access."},
-        "codex": {"supported": true, "level": "enhanced", "notes": "Adds repository inspection, framework detection, deterministic query execution, code modification, and project validation."}
+        "chatgpt_web": {"supported": true, "level": "native", "notes": "Uses the complete bundled upstream catalog when Python is available and a portable no-tool reasoning fallback otherwise."},
+        "codex": {"supported": true, "level": "enhanced", "notes": "Adds full BM25 catalog queries, repository inspection, framework detection, code modification, visual review, and project validation."}
       },
       "origin": {"provider": "github", "repository": "nextlevelbuilder/ui-ux-pro-max-skill", "ref": "main", "release": "v2.14.1", "integrated_commit": "abb7f2fd5a083fa1ff55c326a963ff0d95c33f99", "original_skill_path": ".claude/skills/ui-ux-pro-max/SKILL.md"},
       "license": {"spdx": "MIT", "redistribution": true, "modification": true, "notice": "skills/ui-ux-pro-max/THIRD_PARTY_NOTICES.md"},
@@ -54,12 +54,12 @@
       "summary": "Purpose-aware Korean humanization that defaults summaries and reference content to Fast while using fidelity-first Heavy review for work documents, self-introductions, PPTs, reports, and other final deliverables.",
       "path": "skills/humanize-korean",
       "artifact": "dist/humanize-korean/skill.zip",
-      "port_version": "2.0.0",
+      "port_version": "3.0.0",
       "status": "current",
       "last_verified": "2026-08-08",
       "targets": {
-        "chatgpt_web": {"supported": true, "level": "native", "notes": "Uses shared Fast/Heavy reasoning and bundled references without requiring terminal access; deterministic scripts are optional."},
-        "codex": {"supported": true, "level": "enhanced", "notes": "Adds deterministic routing hints, protected-output verification, structure gates, and lossless chunk/reassembly helpers when shell access is available."}
+        "chatgpt_web": {"supported": true, "level": "native", "notes": "Preserves the full upstream taxonomy and in-session light/standard/heavy reasoning; runs complete deterministic tooling when available."},
+        "codex": {"supported": true, "level": "enhanced", "notes": "Bundles upstream metrics, routing, chunking, reassembly, four-axis gates, and additional ordered fidelity checks."}
       },
       "origin": {"provider": "github", "repository": "epoko77-ai/im-not-ai", "ref": "main", "release": "v2.3.0", "integrated_commit": "53e24e8f92cf344efcb812103f7c2b203e7efffc", "original_skill_path": ".claude/skills/humanize-korean/SKILL.md"},
       "license": {"spdx": "MIT", "redistribution": true, "modification": true, "notice": "skills/humanize-korean/THIRD_PARTY_NOTICES.md"},

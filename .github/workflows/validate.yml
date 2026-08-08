@@ -36,10 +36,15 @@ jobs:
       - name: Build deterministic Skill packages
         run: python scripts/package_skills.py --check
 
+      - name: Build deterministic Codex plugin
+        run: python scripts/package_plugin.py --check
+
       - name: Upload Skill packages
         uses: actions/upload-artifact@v4
         with:
           name: portable-agent-skills
-          path: dist/*/skill.zip
+          path: |
+            dist/*/skill.zip
+            dist/portable-agent-skills/plugin.zip
           if-no-files-found: error
           retention-days: 14

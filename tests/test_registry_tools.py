@@ -126,13 +126,24 @@ class RegistryToolTests(unittest.TestCase):
             errors = validate_registry(root, make_registry(skill))
             self.assertTrue(any("frontmatter name" in error.lower() for error in errors), errors)
 
+    def test_registered_skill_path_must_be_canonical_and_non_overlapping(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            skill = make_skill(root, "child")
+            skill["path"] = "skills/parent/child"
+            errors = validate_registry(root, make_registry(skill))
+            self.assertTrue(any("must equal skills/child" in error.lower() for error in errors), errors)
+
     def test_symlink_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
             skill = make_skill(root)
             target = root / "outside.txt"
             target.write_text("outside", encoding="utf-8")
-            (root / skill["path"] / "linked.txt").symlink_to(target)
+            try:
+                (root / skill["path"] / "linked.txt").symlink_to(target)
+            except OSError as exc:
+                self.skipTest(f"symlink creation is unavailable on this host: {exc}")
             errors = validate_registry(root, make_registry(skill))
             self.assertTrue(any("symlink" in error.lower() for error in errors), errors)
 

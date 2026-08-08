@@ -35,4 +35,4 @@ The upstream MIT notice is preserved below.
 
 ## Adaptation note
 
-This package is not presented as an official release of Next Level Builder. It adds OpenAI-oriented portability rules, a compact offline catalog, ChatGPT Web fallbacks, Codex repository workflows, and upstream-tracking metadata.
+This package is not presented as an official release of Next Level Builder. It vendors the full tracked runtime/data snapshot and adds OpenAI-oriented portability rules, Korean query aliases, explicit fallback provenance, ChatGPT Web fallbacks, Codex repository workflows, and upstream-tracking metadata.

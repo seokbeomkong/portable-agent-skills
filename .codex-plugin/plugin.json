@@ -1,0 +1,29 @@
+{
+  "name": "portable-agent-skills",
+  "version": "0.2.0",
+  "description": "Maintained, source-tracked Agent Skills adapted for ChatGPT and Codex.",
+  "author": {
+    "name": "seokbeomkong",
+    "url": "https://github.com/seokbeomkong"
+  },
+  "homepage": "https://github.com/seokbeomkong/portable-agent-skills",
+  "repository": "https://github.com/seokbeomkong/portable-agent-skills",
+  "license": "MIT",
+  "keywords": ["agent-skills", "chatgpt", "codex", "ui-ux", "korean-writing"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Portable Agent Skills",
+    "shortDescription": "Source-tracked skills for ChatGPT and Codex",
+    "longDescription": "A maintained bundle of useful third-party Agent Skills with upstream provenance, complete runtime assets, deterministic validation, and OpenAI-specific portability adaptations.",
+    "developerName": "seokbeomkong",
+    "category": "Developer Tools",
+    "capabilities": ["Interactive", "Write"],
+    "websiteURL": "https://github.com/seokbeomkong/portable-agent-skills",
+    "defaultPrompt": [
+      "한국어 글을 의미 보존형으로 자연스럽게 윤문해줘.",
+      "전체 UI/UX 데이터베이스로 디자인 시스템을 만들어줘.",
+      "이 인터페이스를 접근성과 반응형까지 포함해 검토해줘."
+    ],
+    "brandColor": "#2563EB"
+  }
+}

@@ -20,3 +20,11 @@ Ask:
 > Create a design system for a B2B analytics dashboard. Include accessibility, responsive layout, typography, color tokens, motion rules, and implementation guidance for Next.js.
 
 A successful invocation should return a coherent design system, identify accessibility and responsive constraints, and distinguish design guidance from repository-editing capabilities that require Codex.
+
+## Smoke test for Humanize Korean
+
+Ask:
+
+> 이 자기소개서를 원문의 사실·수치·역할을 보존하면서 자연스럽게 윤문해줘. 정밀 경로를 사용해줘.
+
+A successful invocation should select the heavy path, preserve protected claims and structure, and state which deterministic checks were available in that ChatGPT environment.

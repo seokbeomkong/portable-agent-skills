@@ -16,9 +16,10 @@ python scripts/generate_catalog.py
 python scripts/generate_catalog.py --check
 python scripts/run_skill_checks.py
 python scripts/package_skills.py --check
+python scripts/package_plugin.py --check
 ```
 
-`run_skill_checks.py` reads each validation command from `registry.yaml`. Do not add per-Skill hard-coded validation lists to tests, README, or CI; registry entries are the source of truth.
+`run_skill_checks.py` reads each validation command from `registry.yaml`. `package_plugin.py` also reads that registry, so every new redistributable entry is automatically included in the Codex plugin. Do not add per-Skill hard-coded validation lists to tests, README, CI, or the plugin manifest; registry entries are the source of truth.
 
 9. Confirm the generated README catalog is unchanged after `--check` and that all registered Skill checks pass.
 10. Submit a PR containing provenance, compatibility, validation evidence, and the intended update policy.

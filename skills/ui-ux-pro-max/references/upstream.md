@@ -8,7 +8,7 @@
 - License: MIT
 - Original skill path: `.claude/skills/ui-ux-pro-max/SKILL.md`
 
-The upstream project contains a substantially larger searchable catalog than the compact portable fallback bundled here. The fallback is designed to keep the Skill useful in environments where local Python execution or the upstream CLI is unavailable.
+This port vendors the full `src/ui-ux-pro-max/data/` catalog and canonical `core.py`, `design_system.py`, `search.py`, `validate_data.py`, and upstream stdlib regression tests from the snapshot above. `references/quick-reference.md` remains the no-tool ChatGPT fallback; it is not a substitute for the bundled database when Python execution is available.
 
 ## Update policy
 
@@ -25,6 +25,6 @@ When maintaining this port:
 
 ## Compatibility intent
 
-- ChatGPT Web: use the Skill instructions and bundled portable catalog. Run bundled scripts only when the execution environment exposes them.
+- ChatGPT Web: use the Skill instructions and no-tool quick reference; run the complete bundled engine when the execution environment exposes Python.
 - Codex: use the same shared core, plus repository inspection, local script execution, implementation, lint/test/build, and file editing.
-- If an existing installation of the official upstream engine is detected, it may be used for deeper catalog queries, but do not install or update external packages without explicit user intent.
+- No separate upstream installation is needed because the complete snapshot is packaged with this Skill.

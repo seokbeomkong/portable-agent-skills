@@ -5,9 +5,13 @@ description: "Portable UI/UX design intelligence for ChatGPT Web and Codex. Use 
 
 # UI UX Pro Max
 
-Provide design-system reasoning, UX review, accessibility checks, and stack-aware implementation guidance through one shared workflow that works in ChatGPT Web and Codex.
+Provide design-system reasoning, UX review, accessibility checks, and stack-aware implementation guidance through one shared workflow that works in ChatGPT Web and Codex. This package bundles the complete upstream v2.14.1 BM25 engine, all domain CSVs, and all 22 stack catalogs.
 
 Treat this package as a portable OpenAI adaptation of `nextlevelbuilder/ui-ux-pro-max-skill`. Preserve upstream attribution and use `references/upstream.md` when maintaining or syncing the port.
+
+## Execution anchor
+
+Resolve `SKILL_ROOT` from the runtime-provided absolute path of this `SKILL.md`. Every `<SKILL_ROOT>` below means that absolute directory; never assume the current working directory contains this Skill. Write persisted design systems only beneath an explicit user project path, never inside the installed Skill.
 
 ## Operating modes
 
@@ -19,7 +23,7 @@ Use this mode for every relevant request.
 
 1. Extract the product, audience, primary task, platform, tone, information density, and motion expectations from the request.
 2. Determine whether the task is a new design, an implementation, or a review.
-3. Use the bundled design intelligence in `references/portable-catalog.json` and `references/quick-reference.md`.
+3. Use `references/quick-reference.md` as the no-tool baseline. When Python is available, query the full bundled database in `data/`.
 4. Produce a coherent recommendation instead of a menu of unrelated styles.
 5. Make accessibility, interaction clarity, responsive behavior, and state design non-negotiable baseline requirements.
 6. Follow `references/output-contract.md` for design systems and reviews.
@@ -29,7 +33,7 @@ Use this mode for every relevant request.
 If local script execution is available, prefer the bundled dependency-free helper for repeatable catalog lookup:
 
 ```bash
-python <skill-root>/scripts/uiux_query.py "<product industry tone keywords>" --design-system -p "<Project Name>"
+python "<SKILL_ROOT>/scripts/search.py" "<product industry tone keywords>" --design-system -p "<Project Name>"
 ```
 
 If `python` is unavailable, try `python3`. If execution is unavailable, continue in Shared mode and do not claim that a database query ran.
@@ -37,16 +41,16 @@ If `python` is unavailable, try `python3`. If execution is unavailable, continue
 Use explicit domains for focused lookup:
 
 ```bash
-python <skill-root>/scripts/uiux_query.py "<query>" --domain product
-python <skill-root>/scripts/uiux_query.py "<query>" --domain style
-python <skill-root>/scripts/uiux_query.py "<query>" --domain color
-python <skill-root>/scripts/uiux_query.py "<query>" --domain typography
-python <skill-root>/scripts/uiux_query.py "<query>" --domain landing
-python <skill-root>/scripts/uiux_query.py "<query>" --domain motion
-python <skill-root>/scripts/uiux_query.py --stack nextjs
+python "<SKILL_ROOT>/scripts/search.py" "<query>" --domain product
+python "<SKILL_ROOT>/scripts/search.py" "<query>" --domain style
+python "<SKILL_ROOT>/scripts/search.py" "<query>" --domain color
+python "<SKILL_ROOT>/scripts/search.py" "<query>" --domain typography
+python "<SKILL_ROOT>/scripts/search.py" "<query>" --domain landing
+python "<SKILL_ROOT>/scripts/search.py" "<query>" --domain gsap
+python "<SKILL_ROOT>/scripts/search.py" "<implementation concern>" --stack nextjs
 ```
 
-The bundled catalog is intentionally compact. Never describe it as the complete upstream UI UX Pro Max database. If the official upstream engine is already installed and a deeper lookup is useful, use it; do not install or update external packages unless the user explicitly asks for that change.
+The engine is stdlib-only and reads package-relative data, so no external installation or network access is required. Korean product/style terms have common English aliases in the tokenizer; for uncommon Korean terms, translate the search query into concise English keywords while keeping the user's request itself unchanged.
 
 ### Codex-enhanced mode
 
@@ -108,7 +112,8 @@ For a new page/project, produce one primary direction containing:
 Use the helper when possible:
 
 ```bash
-python <skill-root>/scripts/uiux_query.py "<query>" --design-system -p "<project>" --stack <stack>
+python "<SKILL_ROOT>/scripts/search.py" "<query>" --design-system -p "<project>" --format markdown
+python "<SKILL_ROOT>/scripts/search.py" "<implementation concern>" --stack <stack>
 ```
 
 Optional design dials:
@@ -126,7 +131,7 @@ Treat the helper output as a recommendation to critique and synthesize, not an i
 In a repository workflow, persist a stable master design system when the user wants reuse across pages or sessions:
 
 ```bash
-python <skill-root>/scripts/uiux_query.py "<query>" --design-system -p "<project>" --persist --output-dir "<project-root>"
+python "<SKILL_ROOT>/scripts/search.py" "<query>" --design-system -p "<project>" --persist --output-dir "<project-root>"
 ```
 
 Use `--page "<page-name>"` to create a page override stub. Do not overwrite an existing `MASTER.md` unless the user intends to regenerate it; use `--force` only deliberately.
@@ -212,7 +217,7 @@ When code is requested:
 Use:
 
 ```bash
-python <skill-root>/scripts/uiux_query.py --stack <detected-stack>
+python "<SKILL_ROOT>/scripts/search.py" "<implementation concern>" --stack <detected-stack>
 ```
 
 for the bundled stack notes.
@@ -240,7 +245,7 @@ If the helper returns no strong catalog match:
 3. Otherwise use the neutral baseline in `references/quick-reference.md`.
 4. State that the recommendation is a general fallback rather than a catalog-specific match when that distinction matters.
 
-If a requested stack is not in the bundled catalog, give stack-neutral guidance and use the repository's own conventions.
+If a requested stack is not among the 22 bundled catalogs, give stack-neutral guidance and use the repository's own conventions.
 
 ## Maintenance
 
@@ -252,6 +257,7 @@ Keep these invariants during every sync:
 - preserve ChatGPT Web no-tool fallback
 - preserve Codex conditional repository workflow
 - remove Claude-specific root variables and provider-only assumptions from shared instructions
+- preserve the complete upstream `data/` catalog and canonical `core.py`, `design_system.py`, `search.py`, and `validate_data.py`
 - preserve upstream license notice
 - update `skill.meta.yaml` and `CHANGELOG.md`
 - run `scripts/check_port.py`

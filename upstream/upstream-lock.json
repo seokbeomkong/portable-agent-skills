@@ -16,6 +16,14 @@
       "integrated_commit": "14d4f2e21a16b573373ca24698cd6bd3db75bf52",
       "last_checked": "2026-08-08T01:55:00Z",
       "review_policy": "human-required"
+    },
+    "humanize-korean": {
+      "repository": "epoko77-ai/im-not-ai",
+      "ref": "main",
+      "integrated_release": "v2.3.0",
+      "integrated_commit": "53e24e8f92cf344efcb812103f7c2b203e7efffc",
+      "last_checked": "2026-08-08T11:50:00Z",
+      "review_policy": "human-required"
     }
   }
 }

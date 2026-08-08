@@ -90,13 +90,21 @@ class RegistryToolTests(unittest.TestCase):
     def test_registry_exposes_skill_validation_commands(self) -> None:
         registry = load_json_yaml(ROOT / "registry.yaml")
         commands = commands_for_registry(registry)
-        self.assertEqual(commands, [("ui-ux-pro-max", "python skills/ui-ux-pro-max/scripts/check_port.py")])
+        self.assertEqual(
+            commands,
+            [
+                ("ui-ux-pro-max", "python skills/ui-ux-pro-max/scripts/check_port.py"),
+                ("caveman", "python skills/caveman/scripts/check_port.py"),
+            ],
+        )
 
     def test_catalog_row_exposes_origin_and_both_targets(self) -> None:
         registry = load_json_yaml(ROOT / "registry.yaml")
         catalog = render_catalog(registry)
         self.assertIn("UI UX Pro Max", catalog)
         self.assertIn("nextlevelbuilder/ui-ux-pro-max-skill", catalog)
+        self.assertIn("Caveman", catalog)
+        self.assertIn("JuliusBrussee/caveman", catalog)
         self.assertIn("ChatGPT Web", catalog)
         self.assertIn("Codex", catalog)
         self.assertIn("v2.14.1", catalog)

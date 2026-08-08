@@ -46,6 +46,25 @@
       "license": {"spdx": "MIT", "redistribution": true, "modification": true, "notice": "skills/caveman/THIRD_PARTY_NOTICES.md"},
       "validation": {"command": "python skills/caveman/scripts/check_port.py", "package_limit_mb": 25},
       "update_policy": {"strategy": "review_required", "watch_release": false, "watch_commit": true, "automatic_issue": true, "automatic_merge": false}
+    },
+    {
+      "id": "humanize-korean",
+      "display_name": "Humanize Korean",
+      "kind": "extended",
+      "summary": "Purpose-aware Korean humanization that defaults summaries and reference content to Fast while using fidelity-first Heavy review for work documents, self-introductions, PPTs, reports, and other final deliverables.",
+      "path": "skills/humanize-korean",
+      "artifact": "dist/humanize-korean/skill.zip",
+      "port_version": "2.0.0",
+      "status": "current",
+      "last_verified": "2026-08-08",
+      "targets": {
+        "chatgpt_web": {"supported": true, "level": "native", "notes": "Uses shared Fast/Heavy reasoning and bundled references without requiring terminal access; deterministic scripts are optional."},
+        "codex": {"supported": true, "level": "enhanced", "notes": "Adds deterministic routing hints, protected-output verification, structure gates, and lossless chunk/reassembly helpers when shell access is available."}
+      },
+      "origin": {"provider": "github", "repository": "epoko77-ai/im-not-ai", "ref": "main", "release": "v2.3.0", "integrated_commit": "53e24e8f92cf344efcb812103f7c2b203e7efffc", "original_skill_path": ".claude/skills/humanize-korean/SKILL.md"},
+      "license": {"spdx": "MIT", "redistribution": true, "modification": true, "notice": "skills/humanize-korean/THIRD_PARTY_NOTICES.md"},
+      "validation": {"command": "python skills/humanize-korean/scripts/check_port.py", "package_limit_mb": 25},
+      "update_policy": {"strategy": "review_required", "watch_release": true, "watch_commit": true, "automatic_issue": true, "automatic_merge": false}
     }
   ]
 }

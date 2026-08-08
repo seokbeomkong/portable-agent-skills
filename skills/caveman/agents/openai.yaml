@@ -1,0 +1,6 @@
+interface:
+  display_name: "Caveman"
+  short_description: "Cut filler. Keep technical substance exact."
+  default_prompt: "Use caveman full mode: answer tersely, preserve exact technical substance, and expand only where clarity or safety requires it."
+policy:
+  allow_implicit_invocation: true

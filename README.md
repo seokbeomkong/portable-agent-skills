@@ -9,8 +9,8 @@ This repository is not a claim of original authorship over ported Skills. Every 
 <!-- REGISTRY:START -->
 | Skill | Kind | Upstream | ChatGPT Web | Codex | Port version | Integrated upstream | Status |
 |---|---|---|---|---|---:|---|---|
-| [UI UX Pro Max](skills/ui-ux-pro-max) | `port` | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | ✅ Native | ✅ Enhanced | `1.0.0` | `v2.14.1` | 🟢 Current |
 | [Caveman](skills/caveman) | `port` | [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) | ✅ Native | ✅ Native | `1.0.0` | `14d4f2e` | 🟢 Current |
+| [UI UX Pro Max](skills/ui-ux-pro-max) | `port` | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | ✅ Native | ✅ Enhanced | `1.0.0` | `v2.14.1` | 🟢 Current |
 <!-- REGISTRY:END -->
 
 ## Why this registry exists
@@ -56,10 +56,11 @@ See [Codex installation](docs/installation-codex.md).
 python -m unittest discover -s tests -v
 python scripts/validate_registry.py
 python scripts/generate_catalog.py --check
+python scripts/run_skill_checks.py
 python scripts/package_skills.py --check
-python skills/ui-ux-pro-max/scripts/check_port.py
-python skills/caveman/scripts/check_port.py
 ```
+
+`run_skill_checks.py` discovers every Skill validation command from `registry.yaml`; adding a new Skill does not require adding another hard-coded command here or in CI.
 
 The tooling uses only the Python standard library.
 

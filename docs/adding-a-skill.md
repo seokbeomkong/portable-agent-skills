@@ -14,8 +14,11 @@ python -m unittest discover -s tests -v
 python scripts/validate_registry.py
 python scripts/generate_catalog.py
 python scripts/generate_catalog.py --check
+python scripts/run_skill_checks.py
 python scripts/package_skills.py --check
 ```
 
-9. Run the Skill's own test command from its registry entry.
+`run_skill_checks.py` reads each validation command from `registry.yaml`. Do not add per-Skill hard-coded validation lists to tests, README, or CI; registry entries are the source of truth.
+
+9. Confirm the generated README catalog is unchanged after `--check` and that all registered Skill checks pass.
 10. Submit a PR containing provenance, compatibility, validation evidence, and the intended update policy.

@@ -16,6 +16,7 @@ if str(SCRIPTS) not in sys.path:
 
 from registry_lib import load_json_yaml, validate_registry  # noqa: E402
 from package_skills import package_skill  # noqa: E402
+from generate_catalog import render_catalog  # noqa: E402
 
 
 def make_skill(root: Path, skill_id: str = "example") -> dict:
@@ -84,6 +85,15 @@ class RegistryToolTests(unittest.TestCase):
         registry = load_json_yaml(ROOT / "registry.yaml")
         self.assertEqual(registry["registry_name"], "portable-agent-skills")
         self.assertEqual(validate_registry(ROOT, registry), [])
+
+    def test_catalog_row_exposes_origin_and_both_targets(self) -> None:
+        registry = load_json_yaml(ROOT / "registry.yaml")
+        catalog = render_catalog(registry)
+        self.assertIn("UI UX Pro Max", catalog)
+        self.assertIn("nextlevelbuilder/ui-ux-pro-max-skill", catalog)
+        self.assertIn("ChatGPT Web", catalog)
+        self.assertIn("Codex", catalog)
+        self.assertIn("v2.14.1", catalog)
 
     def test_duplicate_skill_ids_are_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as td:

@@ -10,6 +10,7 @@ This repository is not a claim of original authorship over ported Skills. Every 
 | Skill | Kind | Upstream | ChatGPT Web | Codex | Port version | Integrated upstream | Status |
 |---|---|---|---|---|---:|---|---|
 | [Caveman](skills/caveman) | `port` | [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) | ✅ Native | ✅ Native | `1.0.0` | `14d4f2e` | 🟢 Current |
+| [Humanize Korean](skills/humanize-korean) | `extended` | [epoko77-ai/im-not-ai](https://github.com/epoko77-ai/im-not-ai) | ✅ Native | ✅ Enhanced | `2.0.0` | `v2.3.0` | 🟢 Current |
 | [UI UX Pro Max](skills/ui-ux-pro-max) | `port` | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | ✅ Native | ✅ Enhanced | `1.0.0` | `v2.14.1` | 🟢 Current |
 <!-- REGISTRY:END -->
 

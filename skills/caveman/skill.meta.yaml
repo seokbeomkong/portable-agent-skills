@@ -1,0 +1,28 @@
+id: caveman
+display_name: Caveman
+kind: port
+port_version: 1.0.0
+created_at: 2026-08-08
+origin:
+  provider: github
+  repository: JuliusBrussee/caveman
+  ref: main
+  commit: 14d4f2e21a16b573373ca24698cd6bd3db75bf52
+  original_skill_path: skills/caveman/SKILL.md
+license:
+  upstream: MIT
+  redistribution: allowed
+  modification: allowed
+targets:
+  chatgpt_web: true
+  codex: true
+compatibility:
+  shared_reasoning_core: native
+  host_specific_hooks: removed
+  implicit_invocation: true
+  conversation_state: host_context_dependent
+update_policy:
+  strategy: review_required
+  compare: commit
+  never_auto_merge_upstream: true
+status: current

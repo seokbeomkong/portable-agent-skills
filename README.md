@@ -10,6 +10,7 @@ This repository is not a claim of original authorship over ported Skills. Every 
 | Skill | Kind | Upstream | ChatGPT Web | Codex | Port version | Integrated upstream | Status |
 |---|---|---|---|---|---:|---|---|
 | [UI UX Pro Max](skills/ui-ux-pro-max) | `port` | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | ✅ Native | ✅ Enhanced | `1.0.0` | `v2.14.1` | 🟢 Current |
+| [Caveman](skills/caveman) | `port` | [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) | ✅ Native | ✅ Native | `1.0.0` | `14d4f2e` | 🟢 Current |
 <!-- REGISTRY:END -->
 
 ## Why this registry exists
@@ -57,6 +58,7 @@ python scripts/validate_registry.py
 python scripts/generate_catalog.py --check
 python scripts/package_skills.py --check
 python skills/ui-ux-pro-max/scripts/check_port.py
+python skills/caveman/scripts/check_port.py
 ```
 
 The tooling uses only the Python standard library.

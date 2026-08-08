@@ -1,0 +1,83 @@
+name: Prepare upstream review PR
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compare registered upstreams
+        id: upstream
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/check_upstreams.py \
+            --output build/upstream-report.json \
+            --github-output "$GITHUB_OUTPUT"
+
+      - name: Record observed state
+        if: steps.upstream.outputs.updates == 'true'
+        run: python scripts/prepare_upstream_review.py --report build/upstream-report.json
+
+      - name: Validate review metadata
+        if: steps.upstream.outputs.updates == 'true'
+        run: |
+          python -m unittest discover -s tests -v
+          python scripts/validate_registry.py
+          python scripts/generate_catalog.py
+          python scripts/generate_catalog.py --check
+
+      - name: Create draft review pull request
+        if: steps.upstream.outputs.updates == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          branch="automation/upstream-review-${GITHUB_RUN_ID}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add registry.yaml upstream/upstream-observed.json README.md
+          git commit -m "chore: record upstream Skill updates"
+          git push -u origin "$branch"
+          python - <<'PY' > /tmp/pr-body.md
+          import json
+          from pathlib import Path
+          report = json.loads(Path('build/upstream-report.json').read_text(encoding='utf-8'))
+          print('## Upstream Skill review')
+          print()
+          print('This draft PR records newly observed upstream revisions. It intentionally does **not** advance integrated revisions or update Skill content.')
+          print()
+          for item in report['updates']:
+              print(f"- `{item['id']}`: `{item['integrated']['release']}` → `{item['latest']['release']}`, `{item['integrated']['commit']}` → `{item['latest']['commit']}`")
+          print()
+          print('### Required before merge')
+          print()
+          print('- [ ] Review upstream changes')
+          print('- [ ] Port relevant changes to ChatGPT Web and Codex')
+          print('- [ ] Update per-Skill changelog and notices')
+          print('- [ ] Run all validation and packaging checks')
+          print('- [ ] Advance integrated revisions only after the port is complete')
+          PY
+          gh pr create \
+            --draft \
+            --base main \
+            --head "$branch" \
+            --title "chore: review upstream Skill updates" \
+            --body-file /tmp/pr-body.md
+
+      - name: Report no updates
+        if: steps.upstream.outputs.updates != 'true'
+        run: echo "All registered upstreams are current."

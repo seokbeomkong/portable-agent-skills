@@ -1,0 +1,42 @@
+name: Publish Skill packages
+
+on:
+  push:
+    tags:
+      - "registry-v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verify and package
+        run: |
+          python -m unittest discover -s tests -v
+          python scripts/validate_registry.py
+          python scripts/generate_catalog.py --check
+          python scripts/run_skill_checks.py
+          python scripts/package_skills.py --check
+
+      - name: Prepare release assets
+        run: |
+          mkdir -p release-assets
+          for archive in dist/*/skill.zip; do
+            skill_id="$(basename "$(dirname "$archive")")"
+            cp "$archive" "release-assets/${skill_id}.skill.zip"
+          done
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release create "$GITHUB_REF_NAME" release-assets/*.skill.zip --verify-tag --generate-notes

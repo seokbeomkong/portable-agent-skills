@@ -17,6 +17,7 @@ if str(SCRIPTS) not in sys.path:
 from registry_lib import load_json_yaml, validate_registry  # noqa: E402
 from package_skills import package_skill  # noqa: E402
 from generate_catalog import render_catalog  # noqa: E402
+from run_skill_checks import commands_for_registry  # noqa: E402
 
 
 def make_skill(root: Path, skill_id: str = "example") -> dict:
@@ -85,6 +86,11 @@ class RegistryToolTests(unittest.TestCase):
         registry = load_json_yaml(ROOT / "registry.yaml")
         self.assertEqual(registry["registry_name"], "portable-agent-skills")
         self.assertEqual(validate_registry(ROOT, registry), [])
+
+    def test_registry_exposes_skill_validation_commands(self) -> None:
+        registry = load_json_yaml(ROOT / "registry.yaml")
+        commands = commands_for_registry(registry)
+        self.assertEqual(commands, [("ui-ux-pro-max", "python skills/ui-ux-pro-max/scripts/check_port.py")])
 
     def test_catalog_row_exposes_origin_and_both_targets(self) -> None:
         registry = load_json_yaml(ROOT / "registry.yaml")

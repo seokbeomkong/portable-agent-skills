@@ -1,0 +1,124 @@
+name: Watch upstream Skills
+
+on:
+  schedule:
+    - cron: "15 0 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: upstream-watch
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compare registered upstreams
+        id: upstream
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/check_upstreams.py \
+            --output build/upstream-report.json \
+            --github-output "$GITHUB_OUTPUT"
+
+      - name: Create, update, or close upstream Issues
+        uses: actions/github-script@v7
+        env:
+          REPORT_PATH: build/upstream-report.json
+        with:
+          script: |
+            const fs = require('fs');
+            const report = JSON.parse(fs.readFileSync(process.env.REPORT_PATH, 'utf8'));
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const label = 'upstream-update';
+
+            try {
+              await github.rest.issues.getLabel({ owner, repo, name: label });
+            } catch (error) {
+              if (error.status !== 404) throw error;
+              await github.rest.issues.createLabel({
+                owner,
+                repo,
+                name: label,
+                color: 'FBCA04',
+                description: 'A tracked upstream Skill has changed and requires review.'
+              });
+            }
+
+            const openItems = await github.paginate(github.rest.issues.listForRepo, {
+              owner,
+              repo,
+              state: 'open',
+              labels: label,
+              per_page: 100
+            });
+            const openIssues = openItems.filter(item => !item.pull_request);
+
+            for (const update of report.updates) {
+              const existing = openIssues.find(issue => (issue.body || '').includes(update.issue_marker));
+              const release = update.latest.release || 'no release';
+              const commit = update.latest.commit || 'unknown';
+              const integratedRelease = update.integrated.release || 'none';
+              const integratedCommit = update.integrated.commit || 'none';
+              const links = [
+                update.release_url ? `- Latest release: ${update.release_url}` : null,
+                update.compare_url ? `- Commit comparison: ${update.compare_url}` : null
+              ].filter(Boolean).join('\n');
+              const body = `${update.issue_marker}
+            ## Upstream update detected
+
+            | Field | Integrated | Latest |
+            |---|---|---|
+            | Release | \`${integratedRelease}\` | \`${release}\` |
+            | Commit | \`${integratedCommit}\` | \`${commit}\` |
+
+            ${links}
+
+            ### Review checklist
+
+            - [ ] Review upstream release notes and commit diff
+            - [ ] Re-check license and redistribution terms
+            - [ ] Identify provider-specific instruction changes
+            - [ ] Adapt the shared ChatGPT Web workflow
+            - [ ] Adapt conditional Codex enhancements
+            - [ ] Update the Skill changelog and notices
+            - [ ] Run registry and Skill-specific validation
+            - [ ] Update integrated release and commit only after review
+
+            This Issue is maintained by the scheduled upstream watcher. The workflow never executes upstream code and never auto-merges a port.`;
+              const title = `[upstream] ${update.id} requires review`;
+              if (existing) {
+                await github.rest.issues.update({ owner, repo, issue_number: existing.number, title, body, labels: [label] });
+                core.info(`Updated issue #${existing.number} for ${update.id}`);
+              } else {
+                const created = await github.rest.issues.create({ owner, repo, title, body, labels: [label] });
+                core.info(`Created issue #${created.data.number} for ${update.id}`);
+              }
+            }
+
+            for (const current of report.current) {
+              const existing = openIssues.find(issue => (issue.body || '').includes(current.issue_marker));
+              if (!existing) continue;
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: existing.number,
+                body: `The integrated registry revision now matches the tracked upstream as of ${report.checked_at}. Closing automatically.`
+              });
+              await github.rest.issues.update({ owner, repo, issue_number: existing.number, state: 'closed' });
+              core.info(`Closed issue #${existing.number} for ${current.id}`);
+            }

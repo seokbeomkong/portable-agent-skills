@@ -24,3 +24,14 @@ See `skills/ui-ux-pro-max/THIRD_PARTY_NOTICES.md` and
 - Registry classification: ChatGPT Web + Codex portable port
 
 See `skills/caveman/THIRD_PARTY_NOTICES.md` and `skills/caveman/LICENSE` for complete terms.
+
+## Humanize Korean
+
+- Upstream: `epoko77-ai/im-not-ai`
+- Integrated release: `v2.3.0`
+- Integrated commit: `53e24e8f92cf344efcb812103f7c2b203e7efffc`
+- Upstream copyright: Copyright (c) 2026 epoko77-ai
+- Upstream license: MIT
+- Registry classification: ChatGPT Web + Codex portable extended port
+
+See `skills/humanize-korean/THIRD_PARTY_NOTICES.md` and `skills/humanize-korean/LICENSE` for complete terms.

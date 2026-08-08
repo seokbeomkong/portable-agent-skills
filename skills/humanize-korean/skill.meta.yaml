@@ -1,0 +1,29 @@
+id: humanize-korean
+display_name: Humanize Korean
+kind: extended
+port_version: 2.0.0
+created_at: 2026-08-08
+origin:
+  provider: github
+  repository: epoko77-ai/im-not-ai
+  ref: main
+  release: v2.3.0
+  commit: 53e24e8f92cf344efcb812103f7c2b203e7efffc
+  original_skill_path: .claude/skills/humanize-korean/SKILL.md
+license:
+  upstream: MIT
+  redistribution: allowed
+  modification: allowed
+targets:
+  chatgpt_web: true
+  codex: true
+compatibility:
+  shared_reasoning_core: native
+  codex_deterministic_helpers: enhanced
+  implicit_invocation: true
+  claude_specific_agent_contracts: removed
+update_policy:
+  strategy: review_required
+  compare: release_and_commit
+  never_auto_merge_upstream: true
+status: current

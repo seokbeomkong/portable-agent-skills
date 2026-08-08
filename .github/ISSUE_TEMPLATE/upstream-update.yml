@@ -1,5 +1,5 @@
 name: Upstream Skill update
-about: Report an upstream change that should be reviewed for a registered port
+description: Report an upstream change that should be reviewed for a registered port
 title: "[upstream] <skill-id> requires review"
 labels: ["upstream-update"]
 body:

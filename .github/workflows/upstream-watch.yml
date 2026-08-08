@@ -78,28 +78,31 @@ jobs:
                 update.release_url ? `- Latest release: ${update.release_url}` : null,
                 update.compare_url ? `- Commit comparison: ${update.compare_url}` : null
               ].filter(Boolean).join('\n');
-              const body = `${update.issue_marker}
-            ## Upstream update detected
-
-            | Field | Integrated | Latest |
-            |---|---|---|
-            | Release | \`${integratedRelease}\` | \`${release}\` |
-            | Commit | \`${integratedCommit}\` | \`${commit}\` |
-
-            ${links}
-
-            ### Review checklist
-
-            - [ ] Review upstream release notes and commit diff
-            - [ ] Re-check license and redistribution terms
-            - [ ] Identify provider-specific instruction changes
-            - [ ] Adapt the shared ChatGPT Web workflow
-            - [ ] Adapt conditional Codex enhancements
-            - [ ] Update the Skill changelog and notices
-            - [ ] Run registry and Skill-specific validation
-            - [ ] Update integrated release and commit only after review
-
-            This Issue is maintained by the scheduled upstream watcher. The workflow never executes upstream code and never auto-merges a port.`;
+              const body = [
+                update.issue_marker,
+                '',
+                '## Upstream update detected',
+                '',
+                '| Field | Integrated | Latest |',
+                '|---|---|---|',
+                `| Release | \`${integratedRelease}\` | \`${release}\` |`,
+                `| Commit | \`${integratedCommit}\` | \`${commit}\` |`,
+                '',
+                links,
+                '',
+                '### Review checklist',
+                '',
+                '- [ ] Review upstream release notes and commit diff',
+                '- [ ] Re-check license and redistribution terms',
+                '- [ ] Identify provider-specific instruction changes',
+                '- [ ] Adapt the shared ChatGPT Web workflow',
+                '- [ ] Adapt conditional Codex enhancements',
+                '- [ ] Update the Skill changelog and notices',
+                '- [ ] Run registry and Skill-specific validation',
+                '- [ ] Update integrated release and commit only after review',
+                '',
+                'This Issue is maintained by the scheduled upstream watcher. The workflow never executes upstream code and never auto-merges a port.'
+              ].join('\n');
               const title = `[upstream] ${update.id} requires review`;
               if (existing) {
                 await github.rest.issues.update({ owner, repo, issue_number: existing.number, title, body, labels: [label] });

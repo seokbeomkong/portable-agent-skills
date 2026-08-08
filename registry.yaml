@@ -20,42 +20,32 @@
       "status": "current",
       "last_verified": "2026-08-08",
       "targets": {
-        "chatgpt_web": {
-          "supported": true,
-          "level": "native",
-          "notes": "Uses bundled references and a portable reasoning catalog without requiring repository or terminal access."
-        },
-        "codex": {
-          "supported": true,
-          "level": "enhanced",
-          "notes": "Adds repository inspection, framework detection, deterministic query execution, code modification, and project validation."
-        }
+        "chatgpt_web": {"supported": true, "level": "native", "notes": "Uses bundled references and a portable reasoning catalog without requiring repository or terminal access."},
+        "codex": {"supported": true, "level": "enhanced", "notes": "Adds repository inspection, framework detection, deterministic query execution, code modification, and project validation."}
       },
-      "origin": {
-        "provider": "github",
-        "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
-        "ref": "main",
-        "release": "v2.14.1",
-        "integrated_commit": "abb7f2fd5a083fa1ff55c326a963ff0d95c33f99",
-        "original_skill_path": ".claude/skills/ui-ux-pro-max/SKILL.md"
+      "origin": {"provider": "github", "repository": "nextlevelbuilder/ui-ux-pro-max-skill", "ref": "main", "release": "v2.14.1", "integrated_commit": "abb7f2fd5a083fa1ff55c326a963ff0d95c33f99", "original_skill_path": ".claude/skills/ui-ux-pro-max/SKILL.md"},
+      "license": {"spdx": "MIT", "redistribution": true, "modification": true, "notice": "skills/ui-ux-pro-max/THIRD_PARTY_NOTICES.md"},
+      "validation": {"command": "python skills/ui-ux-pro-max/scripts/check_port.py", "package_limit_mb": 25},
+      "update_policy": {"strategy": "review_required", "watch_release": true, "watch_commit": true, "automatic_issue": true, "automatic_merge": false}
+    },
+    {
+      "id": "caveman",
+      "display_name": "Caveman",
+      "kind": "port",
+      "summary": "Ultra-terse communication mode that removes filler while preserving exact technical substance and clarity-critical wording.",
+      "path": "skills/caveman",
+      "artifact": "dist/caveman/skill.zip",
+      "port_version": "1.0.0",
+      "status": "current",
+      "last_verified": "2026-08-08",
+      "targets": {
+        "chatgpt_web": {"supported": true, "level": "native", "notes": "Portable prompt-only core with OpenAI metadata and no terminal or hook dependency."},
+        "codex": {"supported": true, "level": "native", "notes": "Uses the same portable core; repository edits and tool use remain governed by host instructions."}
       },
-      "license": {
-        "spdx": "MIT",
-        "redistribution": true,
-        "modification": true,
-        "notice": "skills/ui-ux-pro-max/THIRD_PARTY_NOTICES.md"
-      },
-      "validation": {
-        "command": "python skills/ui-ux-pro-max/scripts/check_port.py",
-        "package_limit_mb": 25
-      },
-      "update_policy": {
-        "strategy": "review_required",
-        "watch_release": true,
-        "watch_commit": true,
-        "automatic_issue": true,
-        "automatic_merge": false
-      }
+      "origin": {"provider": "github", "repository": "JuliusBrussee/caveman", "ref": "main", "integrated_commit": "14d4f2e21a16b573373ca24698cd6bd3db75bf52", "original_skill_path": "skills/caveman/SKILL.md"},
+      "license": {"spdx": "MIT", "redistribution": true, "modification": true, "notice": "skills/caveman/THIRD_PARTY_NOTICES.md"},
+      "validation": {"command": "python skills/caveman/scripts/check_port.py", "package_limit_mb": 25},
+      "update_policy": {"strategy": "review_required", "watch_release": false, "watch_commit": true, "automatic_issue": true, "automatic_merge": false}
     }
   ]
 }

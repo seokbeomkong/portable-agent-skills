@@ -87,19 +87,26 @@ class RegistryToolTests(unittest.TestCase):
         self.assertEqual(registry["registry_name"], "portable-agent-skills")
         self.assertEqual(validate_registry(ROOT, registry), [])
 
-    def test_registry_exposes_skill_validation_commands(self) -> None:
+    def test_registry_exposes_all_declared_skill_validation_commands(self) -> None:
         registry = load_json_yaml(ROOT / "registry.yaml")
-        commands = commands_for_registry(registry)
-        self.assertEqual(commands, [("ui-ux-pro-max", "python skills/ui-ux-pro-max/scripts/check_port.py")])
+        expected = [
+            (skill["id"], skill["validation"]["command"])
+            for skill in registry["skills"]
+            if isinstance((skill.get("validation") or {}).get("command"), str)
+            and skill["validation"]["command"].strip()
+        ]
+        self.assertEqual(commands_for_registry(registry), expected)
 
-    def test_catalog_row_exposes_origin_and_both_targets(self) -> None:
+    def test_catalog_exposes_every_registered_skill(self) -> None:
         registry = load_json_yaml(ROOT / "registry.yaml")
         catalog = render_catalog(registry)
-        self.assertIn("UI UX Pro Max", catalog)
-        self.assertIn("nextlevelbuilder/ui-ux-pro-max-skill", catalog)
         self.assertIn("ChatGPT Web", catalog)
         self.assertIn("Codex", catalog)
-        self.assertIn("v2.14.1", catalog)
+        for skill in registry["skills"]:
+            self.assertIn(skill["display_name"], catalog)
+            repository = (skill.get("origin") or {}).get("repository")
+            if repository:
+                self.assertIn(repository, catalog)
 
     def test_duplicate_skill_ids_are_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as td:

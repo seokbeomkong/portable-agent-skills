@@ -14,3 +14,13 @@ registry's top-level license does not replace those terms.
 
 See `skills/ui-ux-pro-max/THIRD_PARTY_NOTICES.md` and
 `skills/ui-ux-pro-max/LICENSE` for complete terms.
+
+## Caveman
+
+- Upstream: `JuliusBrussee/caveman`
+- Integrated commit: `14d4f2e21a16b573373ca24698cd6bd3db75bf52`
+- Upstream copyright: Copyright (c) 2026 Julius Brussee
+- Upstream license: MIT
+- Registry classification: ChatGPT Web + Codex portable port
+
+See `skills/caveman/THIRD_PARTY_NOTICES.md` and `skills/caveman/LICENSE` for complete terms.
